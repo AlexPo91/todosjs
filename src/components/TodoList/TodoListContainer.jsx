@@ -5,6 +5,7 @@ import {
   setActiveStatusAC,
   setEditableTaskAC,
   cancelEditableTaskAC,
+  saveChangeTaskAC,
 } from "../../redux/todoReducer"
 
 const mapStateToProps = (state) => ({
@@ -23,6 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   cancelEditableTask() {
     dispatch(cancelEditableTaskAC())
+  },
+  saveChangeTask(id, editedTask) {
+    dispatch(saveChangeTaskAC(id, editedTask))
   },
 })
 const TodoListContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList)

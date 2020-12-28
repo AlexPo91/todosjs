@@ -10,12 +10,18 @@ const TodoList = ({
   setEditableTask,
   cancelEditableTask,
   editableTask,
+  saveChangeTask,
 }) => (
   <div>
     {todos.map((el) => (
       <div key={el.id}>
         {editableTask === el.id && (
-          <EditItem task={el.task} cancelEditableTask={cancelEditableTask} />
+          <EditItem
+            id={el.id}
+            task={el.task}
+            cancelEditableTask={cancelEditableTask}
+            saveChangeTask={saveChangeTask}
+          />
         )}
         {editableTask !== el.id && (
           <TodoItem
@@ -37,6 +43,7 @@ TodoList.propTypes = {
   setActiveStatus: PropTypes.func.isRequired,
   setEditableTask: PropTypes.func.isRequired,
   cancelEditableTask: PropTypes.func.isRequired,
+  saveChangeTask: PropTypes.func.isRequired,
 }
 TodoList.defaultProps = {
   editableTask: null,

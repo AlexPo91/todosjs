@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 const SET_NEW_TASK = "SET_NEW_TASK"
 const ADD_NEW_TASK = "ADD_NEW_TASK"
-// const EDIT_TASK = "EDIT_TASK"
+const SAVE_CHANGE_TASK = "SAVE_CHANGE_TASK"
 const DELETE_TASK = "DELETE_TASK"
 const SET_ACTIVE_STATUS = "SET_ACTIVE_STATUS"
 const SET_EDITABLE_TASK = "SET_EDITABLE_TASK"
@@ -51,6 +51,19 @@ const todoReducer = (state = initialState, action) => {
         editableTask: null,
       }
     }
+    case SAVE_CHANGE_TASK: {
+      const index = state.todos.findIndex((el) => el.id === action.id)
+      const oldTask = state.todos[index]
+      const newTask = { ...oldTask, task: action.editedTask }
+      return {
+        ...state,
+        todos: [
+          ...state.todos.slice(0, index),
+          newTask,
+          ...state.todos.slice(index + 1),
+        ],
+      }
+    }
     case SET_ACTIVE_STATUS: {
       const index = state.todos.findIndex((el) => el.id === action.id)
       const oldTask = state.todos[index]
@@ -91,5 +104,10 @@ export const setEditableTaskAC = (id) => ({
 })
 export const cancelEditableTaskAC = () => ({
   type: CANCEL_EDITABLE_TASK,
+})
+export const saveChangeTaskAC = (id, editedTask) => ({
+  type: SAVE_CHANGE_TASK,
+  id,
+  editedTask,
 })
 export default todoReducer

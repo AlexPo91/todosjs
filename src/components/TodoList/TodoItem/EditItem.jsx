@@ -1,15 +1,22 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import styles from "./styles.module.css"
 
-const EditItem = ({ task, cancelEditableTask }) => {
+const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
+  const [changeTask, setChangeTask] = useState(task)
   const onChangeTask = (e) => {
-    console.log(e)
+    setChangeTask(e.target.value)
+  }
+  const onSaveChangeTask = () => {
+    saveChangeTask(id, changeTask)
+    cancelEditableTask()
   }
   return (
     <div className={styles.editItem}>
-      <input type="text" defaultValue={task} onChange={onChangeTask} />
-      <button type="button">Save</button>
+      <input type="text" value={changeTask} onChange={onChangeTask} />
+      <button type="button" onClick={onSaveChangeTask}>
+        Save
+      </button>
       <button
         type="button"
         onClick={() => {
@@ -22,7 +29,9 @@ const EditItem = ({ task, cancelEditableTask }) => {
   )
 }
 EditItem.propTypes = {
+  id: PropTypes.number.isRequired,
   task: PropTypes.string.isRequired,
   cancelEditableTask: PropTypes.func.isRequired,
+  saveChangeTask: PropTypes.func.isRequired,
 }
 export default EditItem
