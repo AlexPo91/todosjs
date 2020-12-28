@@ -1,13 +1,15 @@
 import React from "react"
 import "./App.css"
-import HeaderContainer from "./components/Header/HeaderContainer"
-import TodoList from "./components/TodoList/TodoList"
+import AddPanelContainer from "./components/AddPanel"
+import HeaderContainer from "./components/Header"
+import TodoListContainer from "./components/TodoList"
 
 function App() {
   return (
     <div className="App">
       <HeaderContainer />
-      <TodoList />
+      <AddPanelContainer />
+      <TodoListContainer />
     </div>
   )
 }
