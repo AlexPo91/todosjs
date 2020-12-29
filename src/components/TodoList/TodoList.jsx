@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import QueueAnim from "rc-queue-anim"
 import TodoItem from "./TodoItem"
 import EditItem from "./TodoItem/EditItem"
 
@@ -12,7 +13,7 @@ const TodoList = ({
   editableTask,
   saveChangeTask,
 }) => (
-  <div>
+  <QueueAnim component="div" type={["right", "left"]} leaveReverse>
     {todos.map((el) => (
       <div key={el.id}>
         {editableTask === el.id && (
@@ -33,7 +34,7 @@ const TodoList = ({
         )}
       </div>
     ))}
-  </div>
+  </QueueAnim>
 )
 
 TodoList.propTypes = {
