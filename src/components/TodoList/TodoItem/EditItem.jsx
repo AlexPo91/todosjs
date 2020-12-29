@@ -29,7 +29,7 @@ const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
   )
 }
 EditItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
   cancelEditableTask: PropTypes.func.isRequired,
   saveChangeTask: PropTypes.func.isRequired,

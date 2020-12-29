@@ -31,7 +31,7 @@ const TodoItem = ({ item, deleteTask, setActiveStatus, setEditableTask }) => (
 TodoItem.propTypes = {
   // editableTask: PropTypes.number,
   item: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     task: PropTypes.string,
     isActive: bool,
   }).isRequired,

@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+import { v4 as uuidv4 } from "uuid"
+
 const SET_NEW_TASK = "SET_NEW_TASK"
 const ADD_NEW_TASK = "ADD_NEW_TASK"
 const SAVE_CHANGE_TASK = "SAVE_CHANGE_TASK"
@@ -22,7 +24,7 @@ const todoReducer = (state = initialState, action) => {
       }
     case ADD_NEW_TASK: {
       const newTask = {
-        id: state.todos.length,
+        id: uuidv4(),
         task: state.newTask,
         isActive: false,
       }

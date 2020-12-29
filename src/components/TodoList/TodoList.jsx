@@ -13,7 +13,7 @@ const TodoList = ({
   editableTask,
   saveChangeTask,
 }) => (
-  <QueueAnim component="div" type={["right", "left"]} leaveReverse>
+  <QueueAnim component="div" type={["left", "right"]} leaveReverse>
     {todos.map((el) => (
       <div key={el.id}>
         {editableTask === el.id && (
@@ -38,7 +38,7 @@ const TodoList = ({
 )
 
 TodoList.propTypes = {
-  editableTask: PropTypes.number,
+  editableTask: PropTypes.string,
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   deleteTask: PropTypes.func.isRequired,
   setActiveStatus: PropTypes.func.isRequired,
