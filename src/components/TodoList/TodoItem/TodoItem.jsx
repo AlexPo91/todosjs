@@ -3,7 +3,13 @@ import PropTypes, { bool } from "prop-types"
 import styles from "./styles.module.css"
 import animation from "../../../assets/animation.module.css"
 
-const TodoItem = ({ item, deleteTask, setActiveStatus, setEditableTask }) => (
+const TodoItem = ({
+  item,
+  deleteTask,
+  setActiveStatus,
+  setEditableTask,
+  editableTask,
+}) => (
   <>
     <div className={`${styles.todoItem} ${animation.fadeIn}`}>
       <span
@@ -17,16 +23,28 @@ const TodoItem = ({ item, deleteTask, setActiveStatus, setEditableTask }) => (
         {item.task}
       </span>
       {item.isActive && (
-        <button type="button" onClick={() => deleteTask(item.id)}>
+        <button
+          type="button"
+          onClick={() => deleteTask(item.id)}
+          disabled={editableTask}
+        >
           Delete
         </button>
       )}
       {!item.isActive && (
         <span>
-          <button type="button" onClick={() => setEditableTask(item.id)}>
+          <button
+            type="button"
+            onClick={() => setEditableTask(item.id)}
+            disabled={editableTask}
+          >
             Edit
           </button>
-          <button type="button" onClick={() => deleteTask(item.id)}>
+          <button
+            type="button"
+            onClick={() => deleteTask(item.id)}
+            disabled={editableTask}
+          >
             Delete
           </button>
         </span>
@@ -35,7 +53,7 @@ const TodoItem = ({ item, deleteTask, setActiveStatus, setEditableTask }) => (
   </>
 )
 TodoItem.propTypes = {
-  // editableTask: PropTypes.number,
+  editableTask: PropTypes.string,
   item: PropTypes.shape({
     id: PropTypes.string,
     task: PropTypes.string,
@@ -44,5 +62,8 @@ TodoItem.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   setActiveStatus: PropTypes.func.isRequired,
   setEditableTask: PropTypes.func.isRequired,
+}
+TodoItem.defaultProps = {
+  editableTask: null,
 }
 export default TodoItem

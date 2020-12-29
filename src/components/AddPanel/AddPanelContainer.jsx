@@ -5,6 +5,7 @@ import { setNewTaskAC, addNewTaskAC } from "../../redux/todoReducer"
 
 const mapStateToProps = (state) => ({
   task: state.todo.newTask,
+  editableTask: state.todo.editableTask,
 })
 const mapDispatchToProps = (dispatch) => ({
   setNewTask(newMessage) {

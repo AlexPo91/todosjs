@@ -22,6 +22,7 @@ const TodoList = ({
             task={el.task}
             cancelEditableTask={cancelEditableTask}
             saveChangeTask={saveChangeTask}
+            editableTask={editableTask}
           />
         )}
         {editableTask !== el.id && (
@@ -30,6 +31,7 @@ const TodoList = ({
             deleteTask={deleteTask}
             setActiveStatus={setActiveStatus}
             setEditableTask={setEditableTask}
+            editableTask={editableTask}
           />
         )}
       </div>
