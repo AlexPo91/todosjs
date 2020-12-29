@@ -1,10 +1,11 @@
 import React from "react"
 import PropTypes, { bool } from "prop-types"
 import styles from "./styles.module.css"
+import animation from "../../../assets/animation.module.css"
 
 const TodoItem = ({ item, deleteTask, setActiveStatus, setEditableTask }) => (
   <>
-    <div className={styles.todoItem}>
+    <div className={`${styles.todoItem} ${animation.fadeIn}`}>
       <span
         className={styles.nameItem}
         onClick={(e) => {
@@ -15,6 +16,11 @@ const TodoItem = ({ item, deleteTask, setActiveStatus, setEditableTask }) => (
       >
         {item.task}
       </span>
+      {item.isActive && (
+        <button type="button" onClick={() => deleteTask(item.id)}>
+          Delete
+        </button>
+      )}
       {!item.isActive && (
         <span>
           <button type="button" onClick={() => setEditableTask(item.id)}>

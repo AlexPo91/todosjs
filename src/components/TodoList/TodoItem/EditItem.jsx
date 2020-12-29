@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 import styles from "./styles.module.css"
+import animation from "../../../assets/animation.module.css"
 
 const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
   const [changeTask, setChangeTask] = useState(task)
@@ -12,7 +13,10 @@ const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
     cancelEditableTask()
   }
   return (
-    <div className={styles.editItem}>
+    <div
+      className={`${styles.todoItem} ${animation.fadeIn}`}
+      // {styles.editItem}
+    >
       <input type="text" value={changeTask} onChange={onChangeTask} />
       <button type="button" onClick={onSaveChangeTask}>
         Save
