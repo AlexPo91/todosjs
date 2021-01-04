@@ -11,6 +11,7 @@ import {
 const mapStateToProps = (state) => ({
   editableTask: state.todo.editableTask,
   todos: state.todo.todos,
+  searchTask: state.todo.searchTask,
 })
 const mapDispatchToProps = (dispatch) => ({
   deleteTask(id) {

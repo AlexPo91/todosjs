@@ -2,6 +2,7 @@
 import { v4 as uuidv4 } from "uuid"
 
 const SET_NEW_TASK = "SET_NEW_TASK"
+const SET_SEARCH_TASK = "SET_SEARCH_TASK"
 const ADD_NEW_TASK = "ADD_NEW_TASK"
 const SAVE_CHANGE_TASK = "SAVE_CHANGE_TASK"
 const DELETE_TASK = "DELETE_TASK"
@@ -11,6 +12,7 @@ const CANCEL_EDITABLE_TASK = "CANCEL_EDITABLE_TASK"
 
 const initialState = {
   newTask: "",
+  searchTask: "",
   editableTask: null,
   todos: [],
 }
@@ -84,6 +86,13 @@ const todoReducer = (state = initialState, action) => {
         ].sort((a, b) => a.isActive - b.isActive),
       }
     }
+    case SET_SEARCH_TASK: {
+      return {
+        ...state,
+        searchTask: action.searchTask,
+      }
+    }
+
     default:
       return state
   }
@@ -115,5 +124,9 @@ export const saveChangeTaskAC = (id, editedTask) => ({
   type: SAVE_CHANGE_TASK,
   id,
   editedTask,
+})
+export const searchTaskAC = (searchTask) => ({
+  type: SET_SEARCH_TASK,
+  searchTask,
 })
 export default todoReducer

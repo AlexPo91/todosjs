@@ -7,6 +7,7 @@ import EditItem from "./TodoItem/EditItem"
 const TodoList = ({
   todos,
   deleteTask,
+  searchTask,
   setActiveStatus,
   setEditableTask,
   cancelEditableTask,
@@ -14,33 +15,36 @@ const TodoList = ({
   saveChangeTask,
 }) => (
   <QueueAnim component="div" type={["left", "right"]} leaveReverse>
-    {todos.map((el) => (
-      <div key={el.id}>
-        {editableTask === el.id && (
-          <EditItem
-            id={el.id}
-            task={el.task}
-            cancelEditableTask={cancelEditableTask}
-            saveChangeTask={saveChangeTask}
-            editableTask={editableTask}
-          />
-        )}
-        {editableTask !== el.id && (
-          <TodoItem
-            item={el}
-            deleteTask={deleteTask}
-            setActiveStatus={setActiveStatus}
-            setEditableTask={setEditableTask}
-            editableTask={editableTask}
-          />
-        )}
-      </div>
-    ))}
+    {todos
+      .filter((el) => el.task.includes(searchTask))
+      .map((el) => (
+        <div key={el.id}>
+          {editableTask === el.id && (
+            <EditItem
+              id={el.id}
+              task={el.task}
+              cancelEditableTask={cancelEditableTask}
+              saveChangeTask={saveChangeTask}
+              editableTask={editableTask}
+            />
+          )}
+          {editableTask !== el.id && (
+            <TodoItem
+              item={el}
+              deleteTask={deleteTask}
+              setActiveStatus={setActiveStatus}
+              setEditableTask={setEditableTask}
+              editableTask={editableTask}
+            />
+          )}
+        </div>
+      ))}
   </QueueAnim>
 )
 
 TodoList.propTypes = {
   editableTask: PropTypes.string,
+  searchTask: PropTypes.string.isRequired,
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   deleteTask: PropTypes.func.isRequired,
   setActiveStatus: PropTypes.func.isRequired,
