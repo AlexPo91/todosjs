@@ -31,11 +31,15 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         newTask: "",
-        todos: [...state.todos, newTask],
+        todos: [...state.todos, newTask].sort(
+          (a, b) => a.isActive - b.isActive
+        ),
       }
     }
     case DELETE_TASK: {
-      const newTodos = state.todos.filter((el) => el.id !== action.id)
+      const newTodos = state.todos
+        .filter((el) => el.id !== action.id)
+        .sort((a, b) => a.isActive - b.isActive)
       return {
         ...state,
         todos: newTodos,
@@ -63,7 +67,7 @@ const todoReducer = (state = initialState, action) => {
           ...state.todos.slice(0, index),
           newTask,
           ...state.todos.slice(index + 1),
-        ],
+        ].sort((a, b) => a.isActive - b.isActive),
       }
     }
     case SET_ACTIVE_STATUS: {
@@ -77,7 +81,7 @@ const todoReducer = (state = initialState, action) => {
           ...state.todos.slice(0, index),
           newTask,
           ...state.todos.slice(index + 1),
-        ],
+        ].sort((a, b) => a.isActive - b.isActive),
       }
     }
     default:
