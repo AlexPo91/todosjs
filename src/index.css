@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(#e66465, #9198e5);
+  background: linear-gradient(-45deg,#22c1c3, #fdbb2d);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -16,3 +16,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+@media screen and (max-width: 479px) {
+  body{
+    width: 100vw;
+    height: 100%;
+  }
+}
+
+::-webkit-scrollbar { width: 3px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #4682B4; }
+::-webkit-scrollbar-track {  background-color: #4682B4;}
+::-webkit-scrollbar-track-piece { background-color: #ffffff;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #4682B4; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color:#4682B4;}
+::-webkit-resizer { background-color:#4682B4;}

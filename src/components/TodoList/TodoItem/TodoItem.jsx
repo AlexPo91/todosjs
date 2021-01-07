@@ -1,5 +1,10 @@
 import React from "react"
 import PropTypes, { bool } from "prop-types"
+import {
+  DeleteOutlined,
+  EditOutlined,
+  FileDoneOutlined,
+} from "@ant-design/icons"
 import styles from "./styles.module.css"
 import animation from "../../../assets/animation.module.css"
 
@@ -11,41 +16,51 @@ const TodoItem = ({
   editableTask,
 }) => (
   <>
-    <div className={`${styles.todoItem} ${animation.fadeIn}`}>
+    <div
+      className={`${animation.fadeIn} ${styles.todoListItem}`}
+      style={{ display: "flex", justifyContent: "space-between" }}
+    >
       <span
-        className={styles.nameItem}
-        onClick={(e) => {
-          e.stopPropagation()
-          setActiveStatus(item.id)
-        }}
-        aria-hidden="true"
+        className={`${styles.nameItem} ${
+          item.isActive ? styles.completedNameItem : ""
+        }`}
       >
         {item.task}
       </span>
       {item.isActive && (
         <button
+          className={styles.controlBtn}
           type="button"
           onClick={() => deleteTask(item.id)}
           disabled={editableTask}
         >
-          Delete
+          <DeleteOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
         </button>
       )}
       {!item.isActive && (
-        <span>
+        <span className={styles.controlBtn}>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveStatus(item.id)
+            }}
+            disabled={editableTask}
+          >
+            <FileDoneOutlined style={{ color: "#3CB371", fontSize: "18px" }} />
+          </button>
           <button
             type="button"
             onClick={() => setEditableTask(item.id)}
             disabled={editableTask}
           >
-            Edit
+            <EditOutlined style={{ color: "#4682B4", fontSize: "18px" }} />
           </button>
           <button
             type="button"
             onClick={() => deleteTask(item.id)}
             disabled={editableTask}
           >
-            Delete
+            <DeleteOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
           </button>
         </span>
       )}

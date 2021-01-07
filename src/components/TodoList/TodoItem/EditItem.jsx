@@ -1,16 +1,11 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useState } from "react"
 import PropTypes from "prop-types"
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons"
 import styles from "./styles.module.css"
 import animation from "../../../assets/animation.module.css"
 
-const EditItem = ({
-  id,
-  task,
-  cancelEditableTask,
-  saveChangeTask,
-  // editableTask,
-}) => {
+const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
   const [changeTask, setChangeTask] = useState(task)
   const onChangeTask = (e) => {
     setChangeTask(e.target.value)
@@ -22,22 +17,23 @@ const EditItem = ({
   return (
     <div className={`${styles.editItem} ${animation.fadeIn}`}>
       <input type="text" value={changeTask} onChange={onChangeTask} autoFocus />
-      <button type="button" onClick={onSaveChangeTask} disabled={!changeTask}>
-        Save
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          cancelEditableTask()
-        }}
-      >
-        Cancel
-      </button>
+      <div>
+        <button type="button" onClick={onSaveChangeTask} disabled={!changeTask}>
+          <CheckOutlined style={{ color: "#3CB371", fontSize: "18px" }} />
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            cancelEditableTask()
+          }}
+        >
+          <CloseOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
+        </button>
+      </div>
     </div>
   )
 }
 EditItem.propTypes = {
-  // editableTask: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   task: PropTypes.string.isRequired,
   cancelEditableTask: PropTypes.func.isRequired,

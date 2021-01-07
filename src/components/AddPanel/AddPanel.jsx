@@ -1,24 +1,31 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { AppstoreAddOutlined } from "@ant-design/icons"
+import styles from "./styles.module.css"
 
 const AddPanel = ({ task, setNewTask, addNewTask, editableTask }) => {
   const onChangeText = (e) => {
     setNewTask(e.target.value)
   }
   return (
-    <form>
+    <form className={styles.formAddTask}>
       <input
         type="text"
-        placeholder="inter task"
+        placeholder="Add task"
         value={task}
         onChange={onChangeText}
       />
-      <input
-        type="button"
-        value="save"
-        onClick={addNewTask}
+      <button
+        className={styles.btnAddTask}
+        type="submit"
+        onClick={(e) => {
+          e.preventDefault()
+          addNewTask()
+        }}
         disabled={!!editableTask || !task}
-      />
+      >
+        <AppstoreAddOutlined style={{ fontSize: "22px", color: "#4682B4" }} />
+      </button>
     </form>
   )
 }

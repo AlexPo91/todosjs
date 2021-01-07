@@ -9,8 +9,10 @@ function App() {
   return (
     <div className="App">
       <HeaderContainer />
-      <AddPanelContainer />
-      <SearchPanelContainer />
+      <div className="controlApp">
+        <SearchPanelContainer />
+        <AddPanelContainer />
+      </div>
       <TodoListContainer />
     </div>
   )

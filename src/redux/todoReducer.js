@@ -33,7 +33,7 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         newTask: "",
-        todos: [...state.todos, newTask].sort(
+        todos: [newTask, ...state.todos].sort(
           (a, b) => a.isActive - b.isActive
         ),
       }

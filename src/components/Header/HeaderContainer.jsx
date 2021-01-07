@@ -1,6 +1,9 @@
-import React from "react"
+import { connect } from "react-redux"
 import Header from "./Header"
 
-const HeaderContainer = () => <Header />
+const mapStateToProps = (state) => ({
+  todos: state.todo.todos,
+})
+const HeaderContainer = connect(mapStateToProps)(Header)
 
 export default HeaderContainer
