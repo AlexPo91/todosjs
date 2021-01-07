@@ -15,10 +15,10 @@ const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
     cancelEditableTask()
   }
   return (
-    <div className={`${styles.editItem} ${animation.fadeIn}`}>
+    <form className={`${styles.editItem} ${animation.fadeIn}`}>
       <input type="text" value={changeTask} onChange={onChangeTask} autoFocus />
       <div>
-        <button type="button" onClick={onSaveChangeTask} disabled={!changeTask}>
+        <button type="submit" onClick={onSaveChangeTask} disabled={!changeTask}>
           <CheckOutlined style={{ color: "#3CB371", fontSize: "18px" }} />
         </button>
         <button
@@ -30,7 +30,7 @@ const EditItem = ({ id, task, cancelEditableTask, saveChangeTask }) => {
           <CloseOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
         </button>
       </div>
-    </div>
+    </form>
   )
 }
 EditItem.propTypes = {
