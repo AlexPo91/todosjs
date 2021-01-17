@@ -9,11 +9,14 @@ const DELETE_TASK = "DELETE_TASK"
 const SET_ACTIVE_STATUS = "SET_ACTIVE_STATUS"
 const SET_EDITABLE_TASK = "SET_EDITABLE_TASK"
 const CANCEL_EDITABLE_TASK = "CANCEL_EDITABLE_TASK"
+const SET_PORTABLE_ITEM = "PORTABLE_ITEM"
+const DRAGNDROP = "DRAGNDROP"
 
 const initialState = {
   newTask: "",
   searchTask: "",
   editableTask: null,
+  portableItem: null,
   todos: [],
 }
 
@@ -92,6 +95,25 @@ const todoReducer = (state = initialState, action) => {
         searchTask: action.searchTask,
       }
     }
+    case SET_PORTABLE_ITEM: {
+      return {
+        ...state,
+        portableItem: action.item,
+      }
+    }
+    case DRAGNDROP: {
+      const newTodos = [...state.todos]
+      const elem1 = state.todos.findIndex(
+        (el) => el.id === state.portableItem.id
+      )
+      const elem2 = state.todos.findIndex((el) => el.id === action.id)
+      newTodos.splice(elem1, 1)
+      newTodos.splice(elem2, 0, state.portableItem)
+      return {
+        ...state,
+        todos: newTodos,
+      }
+    }
 
     default:
       return state
@@ -128,5 +150,13 @@ export const saveChangeTaskAC = (id, editedTask) => ({
 export const searchTaskAC = (searchTask) => ({
   type: SET_SEARCH_TASK,
   searchTask,
+})
+export const setPortableItemAC = (item) => ({
+  type: SET_PORTABLE_ITEM,
+  item,
+})
+export const dragNDropAC = (id) => ({
+  type: DRAGNDROP,
+  id,
 })
 export default todoReducer

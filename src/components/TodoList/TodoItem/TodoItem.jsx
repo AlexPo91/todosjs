@@ -15,57 +15,55 @@ const TodoItem = ({
   setEditableTask,
   editableTask,
 }) => (
-  <>
-    <div
-      className={`${animation.fadeIn} ${styles.todoListItem}`}
-      style={{ display: "flex", justifyContent: "space-between" }}
+  <div
+    className={`${animation.fadeIn} ${styles.todoListItem}`}
+    style={{ display: "flex", justifyContent: "space-between" }}
+  >
+    <span
+      className={`${styles.nameItem} ${
+        item.isActive ? styles.completedNameItem : ""
+      }`}
     >
-      <span
-        className={`${styles.nameItem} ${
-          item.isActive ? styles.completedNameItem : ""
-        }`}
+      {item.task}
+    </span>
+    {item.isActive && (
+      <button
+        className={styles.controlBtn}
+        type="button"
+        onClick={() => deleteTask(item.id)}
+        disabled={editableTask}
       >
-        {item.task}
-      </span>
-      {item.isActive && (
+        <DeleteOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
+      </button>
+    )}
+    {!item.isActive && (
+      <span className={styles.controlBtn}>
         <button
-          className={styles.controlBtn}
+          type="button"
+          onClick={() => {
+            setActiveStatus(item.id)
+          }}
+          disabled={editableTask}
+        >
+          <FileDoneOutlined style={{ color: "#3CB371", fontSize: "18px" }} />
+        </button>
+        <button
+          type="button"
+          onClick={() => setEditableTask(item.id)}
+          disabled={editableTask}
+        >
+          <EditOutlined style={{ color: "#4682B4", fontSize: "18px" }} />
+        </button>
+        <button
           type="button"
           onClick={() => deleteTask(item.id)}
           disabled={editableTask}
         >
           <DeleteOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
         </button>
-      )}
-      {!item.isActive && (
-        <span className={styles.controlBtn}>
-          <button
-            type="button"
-            onClick={() => {
-              setActiveStatus(item.id)
-            }}
-            disabled={editableTask}
-          >
-            <FileDoneOutlined style={{ color: "#3CB371", fontSize: "18px" }} />
-          </button>
-          <button
-            type="button"
-            onClick={() => setEditableTask(item.id)}
-            disabled={editableTask}
-          >
-            <EditOutlined style={{ color: "#4682B4", fontSize: "18px" }} />
-          </button>
-          <button
-            type="button"
-            onClick={() => deleteTask(item.id)}
-            disabled={editableTask}
-          >
-            <DeleteOutlined style={{ color: "#FF6347", fontSize: "18px" }} />
-          </button>
-        </span>
-      )}
-    </div>
-  </>
+      </span>
+    )}
+  </div>
 )
 TodoItem.propTypes = {
   editableTask: PropTypes.string,
